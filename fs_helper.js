@@ -2,6 +2,20 @@ const fs = require('fs');
 const path = require('path');
 
 /**
+ * 递归创建多级目录
+ * @param dir
+ * @return {boolean}
+ */
+function mkdirs (dir) {
+    if(fs.existsSync(dir)){
+        return true;
+    }else if(mkdirs(path.dirname(dir))){
+        fs.mkdirSync(dir);
+        return true;
+    }
+}
+
+/**
  * 获取文件的状态
  * @param file
  * @returns {*} maybe null
@@ -21,7 +35,7 @@ function getFileStat(file) {
  * @param file
  */
 function deleteFile(file) {
-    if(!fs.existsSync(file)){
+    if (!fs.existsSync(file)) {
         console.log('%s is not exists.', file);
         return;
     }
@@ -33,13 +47,23 @@ function deleteFile(file) {
  * @param dir
  */
 function deleteDir(dir) {
-    if(!fs.existsSync(dir)){
+    if (!fs.existsSync(dir)) {
         console.log('%s is not exists.', dir);
         return;
     }
     let files = fs.readdirSync(dir);
-    files.forEach(function (file) {
-        fs.unlinkSync(path.join(dir, file));
+    files.map(function (file) {
+        return path.join(dir, file);
+    }).forEach(function (file) {
+        let fileStat = getFileStat(file);
+        if (!fileStat) {
+            return;
+        }
+        if (fileStat.isDirectory()) {
+            deleteDir(file);
+        } else {
+            fs.unlinkSync(file);
+        }
     });
     fs.rmdirSync(dir);
 }
@@ -52,22 +76,22 @@ function deleteDir(dir) {
  * @param ignores 需要被忽略的文件或目录(相对路径会被转为绝对路径)
  */
 function getFiles(dir, ext, ignores) {
-    if(!dir){
+    if (!dir) {
         throw new Error('dir is %s', dir);
     }
-    if(!ext){
+    if (!ext) {
         throw new Error('ext is %s.', ext);
     }
     // 验证原目录是否存在
-    if(!fs.existsSync(dir)){
+    if (!fs.existsSync(dir)) {
         throw new Error(dir + ' is not exists.');
     }
     // 格式化忽略项
-    if(!ignores){
+    if (!ignores) {
         ignores = [];
-    }else{
+    } else {
         ignores = ignores.map(function (file) {
-            return path.isAbsolute(file)?file:path.resolve(file);
+            return path.isAbsolute(file) ? file : path.resolve(file);
         });
     }
     let files = fs.readdirSync(dir);
@@ -78,14 +102,14 @@ function getFiles(dir, ext, ignores) {
     }).filter(function (file) {
         // 过滤忽略项
         let isNotIgnore = ignores.indexOf(file) === -1;
-        if(!isNotIgnore){
+        if (!isNotIgnore) {
             console.log('ignore:', file);
         }
         return isNotIgnore;
     }).forEach(function (file) {
         // 遍历当前目录及子目录下的文件
         let fileStat = getFileStat(file);
-        if(!fileStat){
+        if (!fileStat) {
             return;
         }
         if (fileStat.isDirectory()) {
@@ -122,19 +146,19 @@ function deleteFiles(dir, ext, ignores) {
  * @return {Array|*|{}} 拷贝后的文件路径数组
  */
 function copyFiles(src, target, ext, ignores) {
-    if(!target){
+    if (!target) {
         throw new Error('target is %s.', target);
     }
-    if(!fs.existsSync(target)){
-        fs.mkdirSync(target);
+    if (!mkdirs(target)) {
+        throw new Error('%s is not exists and make directory failed.', target);
     }
     // 格式化忽略项
-    if(!ignores){
+    if (!ignores) {
         ignores = [];
-    }else{
-        if(ignores.indexOf(target) === -1) ignores.push(target);
+    } else {
+        if (ignores.indexOf(target) === -1) ignores.push(target);
         ignores = ignores.map(function (file) {
-            return path.isAbsolute(file)?file:path.resolve(file);
+            return path.isAbsolute(file) ? file : path.resolve(file);
         });
     }
     return getFiles(src, ext, ignores).map(function (file) {
@@ -145,6 +169,7 @@ function copyFiles(src, target, ext, ignores) {
     });
 }
 
+exports.mkdirs = mkdirs;
 exports.getFileStat = getFileStat;
 exports.deleteFile = deleteFile;
 exports.deleteDir = deleteDir;

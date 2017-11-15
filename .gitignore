@@ -60,3 +60,9 @@ typings/
 # local file
 local
 
+# build file
+build
+
+# private library path
+apl-*
+

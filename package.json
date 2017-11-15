@@ -8,18 +8,18 @@
   },
   "scripts": {
     "test": "make test",
-    "apl.connect":"cd apl-connect && npm pack && cd ..",
-    "apl.instance":"cd apl-instance-cache && npm pack && cd ..",
-    "apl.mysql":"cd apl-mysql && npm pack && cd ..",
-    "apl.orm":"cd apl-orm-mysql && npm pack && cd ..",
-    "apl.redis":"cd apl-redis && npm pack && cd ..",
-    "apl.redis.path":"cd apl-redis-path && npm pack && cd ..",
-    "apl.request":"cd apl-request && npm pack && cd ..",
-    "apl.require":"cd apl-require-folder && npm pack && cd ..",
-    "apl.response":"cd apl-response && npm pack && cd ..",
-    "apl.tools":"cd apl-tools && npm pack && cd ..",
-    "apl":"npm run apl.connect && npm run apl.instance && npm run apl.mysql && npm run apl.orm && npm run apl.redis && npm run apl.redis.path && npm run apl.request && npm run apl.require && npm run apl.response && npm run apl.tools",
-    "common":"cd common-util && npm pack && cd ..",
+    "apl.connect": "cd apl-connect && npm pack && cd ..",
+    "apl.instance": "cd apl-instance-cache && npm pack && cd ..",
+    "apl.mysql": "cd apl-mysql && npm pack && cd ..",
+    "apl.orm": "cd apl-orm-mysql && npm pack && cd ..",
+    "apl.redis": "cd apl-redis && npm pack && cd ..",
+    "apl.redis.path": "cd apl-redis-path && npm pack && cd ..",
+    "apl.request": "cd apl-request && npm pack && cd ..",
+    "apl.require": "cd apl-require-folder && npm pack && cd ..",
+    "apl.response": "cd apl-response && npm pack && cd ..",
+    "apl.tools": "cd apl-tools && npm pack && cd ..",
+    "apl": "npm run apl.connect && npm run apl.instance && npm run apl.mysql && npm run apl.orm && npm run apl.redis && npm run apl.redis.path && npm run apl.request && npm run apl.require && npm run apl.response && npm run apl.tools",
+    "common": "cd common-util && npm pack && cd ..",
     "prestart": "node clear.js && npm run apl && npm run common"
   },
   "repository": {
@@ -33,5 +33,16 @@
   },
   "homepage": "https://github.com/zhuanglee/NpmPackHelper#readme",
   "dependencies": {
+    "apl-connect": "file:build/lib/apl-connect-1.0.0.tgz",
+    "apl-instance-cache": "file:build/lib/apl-instance-cache-1.0.0.tgz",
+    "apl-mysql": "file:build/lib/apl-mysql-1.0.0.tgz",
+    "apl-orm-mysql": "file:build/lib/apl-orm-mysql-1.0.0.tgz",
+    "apl-redis": "file:build/lib/apl-redis-1.0.0.tgz",
+    "apl-redis-path": "file:build/lib/apl-redis-path-1.0.0.tgz",
+    "apl-request": "file:build/lib/apl-request-1.0.0.tgz",
+    "apl-require-folder": "file:build/lib/apl-require-folder-1.0.0.tgz",
+    "apl-response": "file:build/lib/apl-response-1.0.0.tgz",
+    "apl-tools": "file:build/lib/apl-tools-1.0.0.tgz",
+    "common-util": "file:build/lib/common-util-0.0.1.tgz"
   }
 }

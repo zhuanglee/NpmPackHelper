@@ -7,19 +7,21 @@ function testPath() {
     console.log(path.join('./lib', 'temp.tgz'));
     console.log(path.join('./', '.idea'));
     console.log(path.join(path.join('./', '.idea'), '.name'));
+    console.log(path.dirname('build/lib'));
 }
 
 function test() {
-    let files = fsHelper.getFiles('./', '.tgz', ['.idea']);
+    fsHelper.mkdirs('build/lib');
+    let files = fsHelper.getFiles(
+        config.relativeRootPath, config.libExt, config.ignores);
     console.log(files);
     // 删除 lib 目录
     fsHelper.deleteDir(config.libPath);
     // 删除所有 .tgz 文件
     fsHelper.deleteFiles(config.relativeRootPath, config.libExt, config.ignores);
-    // 删除脚本文件
-    fsHelper.deleteFile(config.batScript);
-    fsHelper.deleteFile(config.bashScript);
 }
 
-test();
+testPath();
+// test();
+
 
