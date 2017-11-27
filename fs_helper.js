@@ -1,5 +1,20 @@
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
+/**
+ * 列出指定目录下的文件信息
+ * @param path
+ */
+function ls(path) {
+    fs.readdir(path, function (err, files) {
+        if (err) {
+            return console.error(err);
+        }
+        files.forEach(function (file) {
+            console.log(file)
+        })
+    })
+}
 
 /**
  * 递归创建多级目录
@@ -169,10 +184,51 @@ function copyFiles(src, target, ext, ignores) {
     });
 }
 
-exports.mkdirs = mkdirs;
-exports.getFileStat = getFileStat;
-exports.deleteFile = deleteFile;
-exports.deleteDir = deleteDir;
-exports.getFiles = getFiles;
-exports.deleteFiles = deleteFiles;
-exports.copyFiles = copyFiles;
+/**
+ * 压缩
+ * @param src
+ * @param target
+ */
+function gzip(src, target) {
+    if (!target)
+        target = src + ".gz";
+    try {
+        fs.createReadStream(src)
+            .pipe(zlib.createGzip())
+            .pipe(fs.createWriteStream(target));
+        console.log(src + " 成功压缩到 " + target);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+/**
+ * 解压
+ * @param src
+ * @param target
+ */
+function unzip(src, target) {
+    if (!target)
+        target = src.substr(0, src.length - 3);
+    try {
+        fs.createReadStream(src)
+            .pipe(zlib.createUnzip())
+            .pipe(fs.createWriteStream(target));
+        console.log(src + " 成功解压到 " + target);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+module.exports = {
+    copyFiles,
+    deleteDir,
+    deleteFiles,
+    deleteFile,
+    mkdirs,
+    ls,
+    getFileStat,
+    getFiles,
+    gzip,
+    unzip
+};
