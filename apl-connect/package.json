@@ -1,0 +1,21 @@
+{
+  "name": "apl-connect",
+  "version": "1.0.1",
+  "description": "use it like connect",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jinmaohuihui",
+  "license": "ISC",
+  "contributors": [
+    {
+      "name": "lzh",
+      "email": "devlzh93@gmail.com",
+      "url": "http://github.com/zhuanglee"
+    }
+  ],
+  "dependencies": {
+    "delegates": "^1.0.0"
+  }
+}
