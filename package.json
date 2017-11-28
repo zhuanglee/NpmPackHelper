@@ -35,16 +35,5 @@
   },
   "homepage": "https://github.com/zhuanglee/NpmPackHelper#readme",
   "dependencies": {
-    "apl-connect": "file:build/lib/apl-connect-1.0.0.tgz",
-    "apl-instance-cache": "file:build/lib/apl-instance-cache-1.0.0.tgz",
-    "apl-mysql": "file:build/lib/apl-mysql-1.0.0.tgz",
-    "apl-orm-mysql": "file:build/lib/apl-orm-mysql-1.0.0.tgz",
-    "apl-redis": "file:build/lib/apl-redis-1.0.0.tgz",
-    "apl-redis-path": "file:build/lib/apl-redis-path-1.0.0.tgz",
-    "apl-request": "file:build/lib/apl-request-1.0.0.tgz",
-    "apl-require-folder": "file:build/lib/apl-require-folder-1.0.0.tgz",
-    "apl-response": "file:build/lib/apl-response-1.0.0.tgz",
-    "apl-tools": "file:build/lib/apl-tools-1.0.0.tgz",
-    "common-util": "file:build/lib/common-util-0.0.1.tgz"
   }
 }

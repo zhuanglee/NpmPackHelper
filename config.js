@@ -14,5 +14,5 @@ module.exports = {
     // linux 安装脚本的相对路径
     bashScript: './build/install_tgz.sh',
     // 忽略的目录或文件的（相对或绝对）路径
-    ignores: ['./.idea','./build']
+    ignores: ['./.idea','./build','./lib']
 };
