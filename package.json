@@ -1,27 +1,16 @@
 {
-  "name": "NpmPackHelper",
-  "version": "1.0.0",
-  "description": "将指定目录下所有包含package.json的目录打包，并生成安装脚本",
-  "main": "server.js",
+  "name": "npm-pack-helper",
+  "version": "1.1.0",
+  "description": "用于批量打包某目录下的所有库（含有package.json的文件夹）",
+  "keywords": ["npm pack", "package.json", ".tgz", "fs", "path"],
+  "main": "build.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "make test",
-    "apl.connect": "cd apl-connect && npm pack && cd ..",
-    "apl.instance": "cd apl-instance-cache && npm pack && cd ..",
-    "apl.mysql": "cd apl-mysql && npm pack && cd ..",
-    "apl.orm": "cd apl-orm-mysql && npm pack && cd ..",
-    "apl.redis": "cd apl-redis && npm pack && cd ..",
-    "apl.redis.path": "cd apl-redis-path && npm pack && cd ..",
-    "apl.request": "cd apl-request && npm pack && cd ..",
-    "apl.require": "cd apl-require-folder && npm pack && cd ..",
-    "apl.response": "cd apl-response && npm pack && cd ..",
-    "apl.tools": "cd apl-tools && npm pack && cd ..",
-    "apl": "npm run apl.connect && npm run apl.instance && npm run apl.mysql && npm run apl.orm && npm run apl.redis && npm run apl.redis.path && npm run apl.request && npm run apl.require && npm run apl.response && npm run apl.tools",
-    "common": "cd common-util && npm pack && cd ..",
     "prebuild": "node prebuild.js",
-    "build":"npm run apl && npm run common",
+    "build":"node build.js",
     "postbuild": "node postbuild.js"
   },
   "repository": {

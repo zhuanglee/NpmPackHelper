@@ -1,7 +1,14 @@
 const config = require('./config');
-let fsHelper = require("./fs_helper");
-// 删除 build 目录
-fsHelper.deleteDir(config.buildPath);
-// 删除所有 .tgz 文件
-fsHelper.deleteFiles(config.relativeRootPath, config.libExt, config.ignores);
+let fsHelper = require("./lib/fs_helper");
+const fs = require('fs');
+const path = require('path');
 
+// 清空 build 目录
+fsHelper.clearDir(config.buildPath);
+
+// 如果不存在，则创建 build 目录
+fsHelper.mkdirs(config.buildPath);
+
+// 复制package.json.template
+fs.copyFileSync(path.join(config.relativeRootPath, './config/package.json.template'),
+    path.join(config.buildPath, 'package.json'));

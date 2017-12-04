@@ -13,6 +13,6 @@ module.exports = {
     batScript: './build/install_tgz.bat',
     // linux 安装脚本的相对路径
     bashScript: './build/install_tgz.sh',
-    // 忽略的目录或文件的（相对或绝对）路径
-    ignores: ['./.idea','./build','./lib']
+    // 忽略规则：用于配置忽略的目录或文件的（相对或绝对）路径，支持正则表达式
+    ignores: ['./.idea', './build', './lib', /([\\|\/]node_modules[\\|\/]?)/],
 };
