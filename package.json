@@ -4,6 +4,9 @@
   "description": "用于批量打包某目录下的所有库（含有package.json的文件夹）",
   "keywords": ["npm pack", "package.json", ".tgz", "fs", "path"],
   "main": "build.js",
+  "bin": {
+    "hello": "hello"
+  },
   "directories": {
     "example": "example"
   },
