@@ -69,4 +69,5 @@ apl-*
 
 # WebStorm
 .idea
+package-lock.json
 
