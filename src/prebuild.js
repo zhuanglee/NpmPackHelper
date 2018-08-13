@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config/index');
 let fsHelper = require("./lib/fs_helper");
 const fs = require('fs');
 const path = require('path');
@@ -10,5 +10,5 @@ fsHelper.clearDir(config.buildPath);
 fsHelper.mkdirs(config.buildPath);
 
 // 复制package.json.template
-fs.copyFileSync(path.join(config.relativeRootPath, './config/package.json.template'),
+fs.copyFileSync(config.templatePath,
     path.join(config.buildPath, 'package.json'));

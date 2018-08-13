@@ -64,6 +64,7 @@ local
 build
 
 # private library path
+libs
 apl-*
 
 # WebStorm

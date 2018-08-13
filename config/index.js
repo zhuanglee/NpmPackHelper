@@ -1,10 +1,12 @@
 module.exports = {
-    // 相对根目录
-    relativeRootPath:'./',
+    // 待打包的目标父目录
+    targetPath:'./libs',
     // build的相对路径
     buildPath: './build',
     // lib的相对路径
     libPath: './build/lib',
+    // package.json.template的目录
+    templatePath:'./config/package.json.template',
     // 生成的安装包的扩展名（固定的）
     libExt: '.tgz',
     // 脚本中lib的相对路径

@@ -2,19 +2,22 @@
   "name": "npm-pack-helper",
   "version": "1.1.0",
   "description": "用于批量打包某目录下的所有库（含有package.json的文件夹）",
-  "keywords": ["npm pack", "package.json", ".tgz", "fs", "path"],
+  "keywords": [
+    "npm pack",
+    "package.json",
+    ".tgz",
+    "fs",
+    "path"
+  ],
   "main": "build.js",
-  "bin": {
-    "hello": "hello"
-  },
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "make test",
-    "prebuild": "node prebuild.js",
-    "build":"node build.js",
-    "postbuild": "node postbuild.js"
+    "prebuild": "node src/prebuild.js",
+    "build": "node src/build.js",
+    "postbuild": "node src/postbuild.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,5 @@
     "url": "https://github.com/zhuanglee/NpmPackHelper/issues"
   },
   "homepage": "https://github.com/zhuanglee/NpmPackHelper#readme",
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -1,7 +1,7 @@
 const assert = require('assert');
 const config = require('./config');
-const fsHelper = require("./lib/fs_helper");
-const cmdHelper = require("./lib/cmd_helper");
+const fsHelper = require("./src/lib/fs_helper");
+const cmdHelper = require("./src/lib/cmd_helper");
 const path = require('path');
 const fs = require('fs');
 
@@ -23,11 +23,11 @@ function testFsHelper() {
     fsHelper.mkdirs('build/lib');
     // 查找所有扩展名为 '.tgz' 的文件
     let files = fsHelper.getFiles(
-        config.relativeRootPath, config.libExt, config.ignores);
+        config.targetPath, config.libExt, config.ignores);
     console.log('getFiles', files);
     // 查找所有 package.json 文件
     let ignores = config.ignores.concat('./package.json');
-    let packages = fsHelper.find(config.relativeRootPath,
+    let packages = fsHelper.find(config.targetPath,
         'package.json', ignores).map(function (file) {
         return path.dirname(file);
     });
@@ -37,13 +37,13 @@ function testFsHelper() {
     // 清空目录
     fsHelper.clearDir(config.buildPath);
     // 删除所有 .tgz 文件
-    fsHelper.deleteFiles(config.relativeRootPath,
+    fsHelper.deleteFiles(config.targetPath,
         config.libExt, config.ignores);
 }
 
 function testCopyPackageJson() {
     // 复制package.json.template
-    fs.copyFileSync(path.join(config.relativeRootPath, './config/package.json.template'),
+    fs.copyFileSync(path.join(config.targetPath, './config/package.json.template'),
         path.join(config.buildPath, 'package.json'));
 }
 
